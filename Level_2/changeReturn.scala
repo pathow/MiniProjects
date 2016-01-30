@@ -15,7 +15,7 @@ def calcReturn(cash: Double, price: Double) = {
   var difference = BigDecimal(cash - price).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
 
   for (coin <- changeDenom) {
-    val coinNum = (difference / coin).toInt
+    val coinNum = BigDecimal(difference / coin).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble.toInt
     changeCount += coinNum
     difference -= coinNum*coin
   }
